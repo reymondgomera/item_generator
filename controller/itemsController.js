@@ -70,7 +70,7 @@ const imageOptimization = file => {
 const item_create_get = async (req, res) => {
     try {
         const query_response = await pool.query('SELECT * FROM item_list');
-        res.json(query_response.rows);
+        res.render('items', { items: query_response.rows });
     } catch (err) {
         console.error(err.message);
     }
