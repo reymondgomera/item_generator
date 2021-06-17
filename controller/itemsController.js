@@ -106,9 +106,10 @@ const item_create_post = async (req, res) => {
                         //optimized image
                         imageOptimization(req.file);
 
-                        res.json({ message: 'Item added successfully!' });
+                        res.redirect('/');
                     } catch (err) {
                         console.error(err.message);
+                        res.status(500).send('Server Error Occured..');
                     }
                 }
             }
@@ -191,6 +192,18 @@ const item_details_get = async (req, res) => {
     }
 };
 
+const item_delete = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query('DELETE FROM items WHERE item_id = $1', [id]);
+
+        res.redirect('/');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
 module.exports = {
     item_view_get,
     item_create_get,
@@ -200,4 +213,5 @@ module.exports = {
     item_price_put,
     item_description_put,
     item_details_get,
+    item_delete,
 };
