@@ -14,7 +14,7 @@
                     <% if (items.length > 0) { %>
                         <% items.forEach(item => { %>
                             <div>
-                                <a href="">
+                                <a href="/items/<%= item.item_id %> ">
                                     <div class="card">
                                         <img src="/uploads/image/item/<%= item.item_image%>" class="card-img-top" alt="Item Image">
                                         <ul class="list-group list-group-flush">
@@ -27,7 +27,7 @@
                                                 <div>
                                                     <div>
                                                         <span class="item-info">Price: 
-                                                            <span class="item-info fw-bold"><%= item.item_price  %></span>
+                                                            <span class="item-info fw-bold"><span>₱ </span><%= item.item_price  %></span>
                                                         </span>
                                                     </div>
                                                     <div>
@@ -48,7 +48,7 @@
                             </div>
                         <%  }); %> 
                     <% } else { %>
-                        
+                        <h5 class="h5">No Items to desplay.</h1>
                     <% } %>
                     
                 </div>
