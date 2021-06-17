@@ -69,7 +69,7 @@ const imageOptimization = file => {
 
 const item_create_get = async (req, res) => {
     try {
-        res.render('items/create_item');
+        res.render('items/create_item', { title: 'Create Item' });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error Occured..');
@@ -79,7 +79,7 @@ const item_create_get = async (req, res) => {
 const item_view_get = async (req, res) => {
     try {
         const query_response = await pool.query('SELECT * FROM item_list');
-        res.render('items/items', { items: query_response.rows });
+        res.render('items/items', { title: 'Items', items: query_response.rows });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error Occured..');

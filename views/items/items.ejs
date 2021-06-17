@@ -10,210 +10,47 @@
             <div class="style-scontainer mx-xs-3">
                 <h1 class="h1 style-section-title">Items</h1>
                 <div class="style-card-item-container">
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
+                    <!-- card items -->
+                    <% if (items.length > 0) { %>
+                        <% items.forEach(item => { %>
+                            <div>
+                                <a href="">
+                                    <div class="card">
+                                        <img src="/uploads/image/item/<%= item.item_image%>" class="card-img-top" alt="Item Image">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <span class="item-info">Name: 
+                                                    <span class="item-info fw-bold"><%= item.item_name%></span>
                                                 </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div>
+                                                    <div>
+                                                        <span class="item-info">Price: 
+                                                            <span class="item-info fw-bold"><%= item.item_price  %></span>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="item-info">Quantity: 
+                                                            <span class="item-info fw-bold"><%= item.item_quantity %> </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="item-info">Category: 
+                                                    <span class="item-info fw-bold"><%= item.category_name %> </span>
                                                 </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- card item -->
-                    <div>
-                        <a href="">
-                            <div class="card">
-                                <img src="/assets/images/sample item image.jpg" class="card-img-top" alt="Item Image">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <span class="item-info">Name: 
-                                            <span class="item-info fw-bold">Apple MacBook Pro</span>
-                                        </span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <span class="item-info">Price: 
-                                                    <span class="item-info fw-bold">₱55,950.00</span>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="item-info">Quantity: 
-                                                    <span class="item-info fw-bold">100</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="item-info">Category: 
-                                            <span class="item-info fw-bold">Electronic Devices</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </a>
-                    </div>
+                        <%  }); %> 
+                    <% } else { %>
+                        
+                    <% } %>
+                    
                 </div>
             </div>
         </div>
