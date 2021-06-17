@@ -177,6 +177,20 @@ const item_description_put = async (req, res) => {
     }
 };
 
+const item_details_get = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const sql = 'SELECT * FROM item_list WHERE item_id = $1';
+        const data = [id];
+        const query_response = await pool.query(sql, data);
+
+        res.render('items/details', { title: 'Item Details', item: query_response.rows[0] });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
 module.exports = {
     item_view_get,
     item_create_get,
@@ -185,4 +199,5 @@ module.exports = {
     item_quantity_put,
     item_price_put,
     item_description_put,
+    item_details_get,
 };
