@@ -8,14 +8,14 @@
     <section class="container style-section">
         <div class="container">
             <div class="style-scontainer mx-xs-3">
-                <h1 class="h1 style-section-title">Item Title</h1>
+                <h1 class="h1 style-section-title"><%= item.item_name %> </h1>
                 <div>
                     <div class="item-data-container">
-                        <span>Created: &nbsp; <span class="fw-bold">01/24/2021</span> &nbsp; Updated: &nbsp; <span class="fw-bold">01/24/2021</span></span>
+                        <span>Created: &nbsp; <span class="fw-bold"><%= item.item_createdat %> </span> &nbsp; Updated: &nbsp; <span class="fw-bold"><%= item.item_updatedat %> </span></span>
                     </div>
                     <div class="item-data-container">
                         <span>Quantity: </span>
-                        <span class="fw-bold">100</span>
+                        <span class="fw-bold"><%= item.item_quantity %> </span>
                         <div class="input-group mb-3 data-edit-field d-none">
                             <input type="number" class="form-control" >
                         </div>
@@ -23,12 +23,19 @@
                     </div>
                     <div class="item-data-container">
                         <span>Price: </span>
-                        <span class="fw-bold">₱200.00</span>
+                        <span class="fw-bold"><span>₱ </span><%= item.item_price %> </span>
                         <div class="input-group mb-3 data-edit-field d-none">
                             <span class="input-group-text" id="basic-addon1">₱</span>
                             <input type="text" class="form-control" >
                         </div>
                         <a class="btn-edit" href=""><img class="style-icons edit-icons" src="/assets/icons/icons8-edit.svg" alt="Edit Icon"></a>
+                    </div>
+                    <div class="item-data-container">
+                        <span>Category: </span>
+                        <span class="fw-bold"><%= item.category_name %> </span>
+                        <div class="input-group mb-3 data-edit-field d-none">
+                            <input type="number" class="form-control" >
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -36,13 +43,7 @@
                         <span>Description: </span>
                         <a class="btn-edit" href=""><img class="style-icons edit-icons" src="/assets/icons/icons8-edit.svg" alt="Edit Icon"></a>
                     </div>
-                    <p class="text-muted lh-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque eros quis dui interdum cursus. In id nibh non erat aliquam sodales eu quis augue. 
-                        Curabitur cursus ultrices nulla. In a mauris mollis, imperdiet diam eget, cursus est. Maecenas ultrices non neque non ultrices. Aenean tempor lacus rutrum cursus ornare. 
-                        Suspendisse id scelerisque tortor. Etiam vulputate tellus nunc, at commodo neque tincidunt at. Praesent leo nulla, pellentesque id mollis ultricies, pretium eget nunc.
-                        Suspendisse ut malesuada arcu, eu ultricies nulla. Nullam ac orci suscipit, sagittis ex vitae, ultrices turpis. Suspendisse id scelerisque tortor. Etiam vulputate tellus nunc, 
-                        at commodo neque tincidunt at. Praesent l
-                    </p>
+                    <p class="text-muted lh-lg"><%= item.item_desc %> </p>
                     <textarea class="form-control d-none" name="item-desctiption" id="item-desctiption" cols="30" rows="10"></textarea>
                 </div>
             </div>
