@@ -69,10 +69,20 @@ const imageOptimization = file => {
 
 const item_create_get = async (req, res) => {
     try {
-        const query_response = await pool.query('SELECT * FROM item_list');
-        res.render('items', { items: query_response.rows });
+        res.render('items/create_item');
     } catch (err) {
         console.error(err.message);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
+const item_view_get = async (req, res) => {
+    try {
+        const query_response = await pool.query('SELECT * FROM item_list');
+        res.render('items/items', { items: query_response.rows });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Occured..');
     }
 };
 
@@ -105,6 +115,7 @@ const item_create_post = async (req, res) => {
         });
     } catch (err) {
         console.error(err.message);
+        res.status(500).send('Server Error Occured..');
     }
 };
 
@@ -114,11 +125,64 @@ const item_categories_get = async (req, res) => {
         res.json(query_response.rows);
     } catch (err) {
         console.error(err.message);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
+const item_quantity_put = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { quantity } = req.body;
+
+        const sql = 'UPDATE items SET item_quantity = $1, item_updatedat = CURRENT_DATE WHERE item_id = $2';
+        const data = [quantity, id];
+        await pool.query(sql, data);
+
+        res.json({ message: "Item's quantity was updated succesfully" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
+const item_price_put = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { price } = req.body;
+
+        const sql = 'UPDATE items SET item_price = $1, item_updatedat = CURRENT_DATE WHERE item_id = $2';
+        const data = [price, id];
+        await pool.query(sql, data);
+
+        res.json({ message: "Item's price was updated succesfully!" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Occured..');
+    }
+};
+
+const item_description_put = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { description } = req.body;
+
+        const sql = 'UPDATE items SET item_desc = $1, item_updatedat = CURRENT_DATE WHERE item_id = $2';
+        const data = [description, id];
+        await pool.query(sql, data);
+
+        res.json({ message: "Item's description was updated succesfully!" });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Occured..');
     }
 };
 
 module.exports = {
+    item_view_get,
     item_create_get,
     item_create_post,
     item_categories_get,
+    item_quantity_put,
+    item_price_put,
+    item_description_put,
 };
