@@ -1,3 +1,14 @@
+var update = async (body, url, id) => {
+    const response = await fetch(`${url}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+    });
+
+    const data = await response.json();
+    console.log(data);
+};
+
 document.querySelectorAll('.btn-edit').forEach(element => {
     element.addEventListener('click', async e => {
         if (
@@ -18,33 +29,27 @@ document.querySelectorAll('.btn-edit').forEach(element => {
             inputFieldParentContainer.classList.toggle('d-none');
             spanElement.classList.toggle('d-none');
 
-            // textContent is string by default it needed to pase into integer
-            let detailsValue = parseInt(spanElement.textContent);
+            // textContent is string by default it needed to pase into float and allowed 2 decimal places
+            let detailsValue = parseFloat(spanElement.textContent);
             // set the edit value to value of details (e.g value of quantity, price )
             editInputField.value = detailsValue;
 
-            // execute only when the fields is visible or not contain a class of d-none
+            // (exprected to executed once) if fields is change value of that will be the value of the inputfield and the span field
+            editInputField.addEventListener('change', e => {
+                if (e.target.value != '') {
+                    editInputField.value = e.target.value;
+                    spanElement.textContent = e.target.value;
+                }
+            });
+
+            // execute only when the fields is not visible or contain a class of d-none
             if (inputFieldParentContainer.classList.contains('d-none')) {
                 switch (e.target.id) {
                     case 'btn-quantity-edit':
-                        console.log(typeof e.target.id);
                         try {
-                            const body = { quantity: editInputField.value };
-
-                            // if fields is change value that will the value of the quantity
-                            editInputField.addEventListener('change', e => {
-                                body.quantity = e.target.value;
-                                spanElement.textContent = e.target.value;
-                            });
-
-                            const response = await fetch(`http://localhost:5000/items/quantity/${id}`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(body),
-                            });
-
-                            const data = await response.json();
-                            console.log(data);
+                            const body = { quantity: parseInt(editInputField.value) };
+                            update(body, 'http://localhost:5000/items/quantity', id);
+                            spanElement.textContent = body.quantity;
                         } catch (err) {
                             console.error(err);
                         }
@@ -52,22 +57,10 @@ document.querySelectorAll('.btn-edit').forEach(element => {
 
                     case 'btn-price-edit':
                         try {
-                            const body = { price: editInputField.value };
+                            const body = { price: parseFloat(editInputField.value).toFixed(2) };
+                            update(body, 'http://localhost:5000/items/price', id);
 
-                            // if fields is change value that will the value of the quantity
-                            editInputField.addEventListener('change', e => {
-                                body.quantity = e.target.value;
-                                spanElement.textContent = e.target.value;
-                            });
-
-                            const response = await fetch(`http://localhost:5000/items/price/${id}`, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(body),
-                            });
-
-                            const data = await response.json();
-                            console.log(data);
+                            spanElement.textContent = body.price; // set the value in a 2 decimal places manner
                         } catch (err) {
                             console.error(err.message);
                         }
@@ -76,8 +69,7 @@ document.querySelectorAll('.btn-edit').forEach(element => {
                         break;
                 }
             }
-        }
-        if (e.target.nodeName === 'IMG' && e.target.id === 'btn-description-edit') {
+        } else if (e.target.nodeName === 'IMG' && e.target.id === 'btn-description-edit') {
             /**
              *  p_element -  contains description value
              *  text_area -  its the edit description field
@@ -93,6 +85,32 @@ document.querySelectorAll('.btn-edit').forEach(element => {
             let details_value = p_element.textContent;
             // set the edit value to value of details description
             text_area.value = details_value;
+
+            // (exprected to executed once) if fields is change value of that will be the value of the inputfield and the span field
+            text_area.addEventListener('change', e => {
+                if (e.target.value != '') {
+                    text_area.value = e.target.value;
+                    p_element.textContent = e.target.value;
+                } else {
+                    console.log('use default value');
+                }
+            });
+
+            // execute only when the fields is not visible or contain a class of d-none
+            if (text_area.classList.contains('d-none')) {
+                console.log('inside-description-edit');
+                const body = { description: text_area.value };
+                update(body, 'http://localhost:5000/items/description', id);
+                p_element.textContent = body.description;
+            }
         }
     });
 }, true);
+
+document.querySelector('#btn-delete').addEventListener('click', async e => {
+    const id = e.target.dataset.item;
+    const response = await fetch(`http://localhost:5000/items/${id}`, { method: 'DELETE' });
+    const data = await response.json();
+
+    window.location = data.redirect;
+});
