@@ -2,6 +2,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
+const uuid = require('uuid');
 const pool = require('../db');
 
 // init storage
@@ -98,15 +99,15 @@ const item_create_post = async (req, res) => {
                     try {
                         const { name, quantity, price, category, description } = req.body;
                         const sql = ` 
-                        INSERT INTO public.items(item_name, item_quantity, item_price, category_id, item_desc, 
-                        item_image, item_createdat, item_updatedat) VALUES($1, $2, $3, $4, $5, $6, CURRENT_DATE, CURRENT_DATE)`;
-                        const data = [name, quantity, price, category, description, req.file.filename];
+                        INSERT INTO public.items(item_id,item_name, item_quantity, item_price, category_id, item_desc, 
+                        item_image, item_createdat, item_updatedat) VALUES($1, $2, $3, $4, $5, $6, $7, CURRENT_DATE, CURRENT_DATE)`;
+                        const data = [uuid.v4(), name, quantity, price, category, description, req.file.filename];
                         await pool.query(sql, data);
 
                         //optimized image
                         imageOptimization(req.file);
 
-                        res.redirect('/');
+                        res.redirect('/items');
                     } catch (err) {
                         console.error(err.message);
                         res.status(500).send('Server Error Occured..');
@@ -195,9 +196,20 @@ const item_details_get = async (req, res) => {
 const item_delete = async (req, res) => {
     try {
         const { id } = req.params;
+
+        const selectToDeleteImage = await pool.query('SELECT item_image FROM items WHERE item_id = $1', [id]);
+        const toDeleteImage = selectToDeleteImage.rows[0].item_image;
+
+        if (fs.existsSync(`./public/uploads/image/item/${toDeleteImage}`)) {
+            fs.unlink(`./public/uploads/image/item/${toDeleteImage}`, err => {
+                if (err) throw err;
+                console.log('image file is deleted...');
+            });
+        }
+
         await pool.query('DELETE FROM items WHERE item_id = $1', [id]);
 
-        res.redirect('/');
+        res.json({ redirect: '/items' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error Occured..');
