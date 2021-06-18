@@ -25,7 +25,7 @@ INSERT INTO public.categories(category_name) VALUES('Women''s Clothing');
 -- Create items table
 CREATE TABLE public.items
 (
-    item_id serial NOT NULL,
+    item_id character varying(255) NOT NULL,
     item_name character varying(255) NOT NULL,
     item_quantity integer NOT NULL,
     item_price numeric(12, 2) NOT NULL,
