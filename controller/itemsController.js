@@ -186,7 +186,8 @@ const item_details_get = async (req, res) => {
         const data = [id];
         const query_response = await pool.query(sql, data);
 
-        res.render('items/details', { title: 'Item Details', item: query_response.rows[0] });
+        if (query_response.rows.length > 0) res.render('items/details', { title: 'Item Details', item: query_response.rows[0] });
+        else res.status(404).render('items/404', { title: 'Page Not Found' });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error Occured..');
