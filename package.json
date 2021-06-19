@@ -1,0 +1,28 @@
+{
+  "name": "item-generator",
+  "version": "1.0.0",
+  "description": "NodeJS Express Postgres Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "keywords": [
+    "NodeJS",
+    "Express",
+    "Postgres",
+    "Project"
+  ],
+  "author": "Rey Mond Gomera",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "pg": "^8.6.0",
+    "sharp": "^0.28.3",
+    "uuid": "^8.3.2"
+  }
+}
