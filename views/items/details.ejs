@@ -10,7 +10,31 @@
             <div class="style-scontainer mx-xs-3">
                 <div class="details-header">
                     <h1 class="h1 style-section-title"><%= item.item_name %> </h1>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Delete
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Confirmation Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <span>Are you sure you're going to delete this item?</span> 
+                          </div>
+                          <div class="modal-footer">
+                            <button id="btn-delete" class="btn btn-danger" data-item="<%= item.item_id %>">Confim</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
                 </div>
                 <div>
                     <div class="item-data-container">
@@ -20,7 +44,7 @@
                         <span>Quantity: </span>
                         <span class="fw-bold"><%= item.item_quantity %> </span>
                         <div id="quantity-edit-input" class="input-group mb-3 data-edit-field d-none">
-                            <input type="number" class="form-control" >
+                            <input type="number" class="form-control">
                         </div>
                         <img id="btn-quantity-edit" class="btn-edit style-icons edit-icons" data-name="quantity" data-item="<%= item.item_id %>" src="/assets/icons/icons8-edit.svg" alt="Edit Icon">
                     </div>
@@ -28,7 +52,7 @@
                         <span>Price: </span>
                         <span class="fw-bold details-price"><%= item.item_price %> </span>
                         <div class="input-group mb-3 data-edit-field d-none">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" pattern="[0-9]+">
                         </div>
                         <img id="btn-price-edit" class="btn-edit style-icons edit-icons" data-name="price" data-item="<%= item.item_id %>" src="/assets/icons/icons8-edit.svg" alt="Edit Icon">
                     </div>

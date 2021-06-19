@@ -28,11 +28,11 @@
                     <div class="form-inputs">
                         <div>
                             <label for="item-categories">Category:</label>
-                            <select id="item-categories"  name="category" class="form-select" name="item-category" id="item-category" required></select>
+                            <select id="item-categories" name="category" class="form-select" name="item-category" id="item-category" required></select>
                         </div>
                         <div>
                             <label for="item-price">Price:</label>
-                            <input type="number" name="price" id="item-price" class="form-control" required>
+                            <input type="text" pattern="[0-9]+(\.[0-9][0-9]?)?" name="price" id="item-price" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-inputs">
