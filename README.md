@@ -3,7 +3,7 @@
 Screen Shots:
 
 <img src="https://i.ibb.co/VTQFQmb/item-generator-landing-page.png" alt="item-generator-landing-page" border="0">
-<img src="https://i.ibb.co/7jRsjWx/item-generator-items-page.png" alt="item-generator-items-page" border="0">
+<img src="https://i.ibb.co/stKv51b/item-generator-items-page.png" alt="item-generator-items-page" border="0">
 <img src="https://i.ibb.co/S0b5RhL/item-generator-details-page.png" alt="item-generator-details-page" border="0">
 <img src="https://i.ibb.co/87V8sKp/item-generator-create-item-page.png" alt="item-generator-create-item-page" border="0">
 <img src="https://i.ibb.co/NS4WBM4/item-generator-about-page.png" alt="item-generator-about-page" border="0">
