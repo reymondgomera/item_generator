@@ -7,7 +7,7 @@ Screen Shots:
 <img src="https://i.ibb.co/S0b5RhL/item-generator-details-page.png" alt="item-generator-details-page" border="0">
 <img src="https://i.ibb.co/87V8sKp/item-generator-create-item-page.png" alt="item-generator-create-item-page" border="0">
 <img src="https://i.ibb.co/NS4WBM4/item-generator-about-page.png" alt="item-generator-about-page" border="0">
-<img src="https://i.ibb.co/Mg10FcJ/item-generator-404-page.png" alt="item-generator-404-page" border="0"><br>
+<img src="https://i.ibb.co/Mg10FcJ/item-generator-404-page.png" alt="item-generator-404-page" border="0">
 Technology Use:
 
 -   **AJAX Calls** - Fetch API
